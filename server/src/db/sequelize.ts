@@ -1,5 +1,6 @@
 import { Sequelize } from 'sequelize'
 import { config } from "dotenv"
+import { User,Token } from '../models/models'
 config()
 
 export const sequelize = new Sequelize({
@@ -13,8 +14,13 @@ export const sequelize = new Sequelize({
 
 export const connectToDatabase = async () => {
     try {
-        await sequelize.authenticate()
-        await sequelize.sync()
+        await sequelize.authenticate({
+            logging:false
+        })
+        await sequelize.sync({
+            alter:true,
+            logging:false
+        })
         console.log("Connect to db")
     } catch (error: any) {
         await sequelize.close()
