@@ -1,7 +1,10 @@
-import express, { Express, Request, Response } from "express";
+import express, { Express } from "express";
 import dotenv from "dotenv";
 import { connectToDatabase } from "./db/sequelize";
+import { authRouter } from "./routes/auth.router";
+
 import cors from "cors"
+import { errorMiddleware } from "./middlewares/error.middleware";
 
 dotenv.config();
 
@@ -11,9 +14,9 @@ const port = process.env.PORT || 5000;
 app.use(express.json())
 app.use(cors())
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("Express with TypeScript Server");
-});
+app.use("/auth", authRouter)
+app.use(errorMiddleware)
+
 
 const start = async () => {
   try {
