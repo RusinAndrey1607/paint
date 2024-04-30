@@ -2,7 +2,6 @@ import { UserDto } from "../dtos/user.dto"
 import { ApiError } from "../exceptions/api.error"
 import { User } from "../models/models"
 import bcrypt from "bcryptjs"
-import { v4 } from 'uuid'
 import { tokenService } from "./token.service"
 
 class AuthService {
@@ -14,14 +13,34 @@ class AuthService {
         }
 
         const hashPassword = await bcrypt.hash(password, 6)
-        const activationLink = v4()
-        const user = await User.create({ email, password: hashPassword, activationLink })
+        const user = await User.create({ email, password: hashPassword })
 
         const userDto = new UserDto(user)
-        const tokens = await tokenService.generateTokens({ ...userDto })
+        const tokens = await tokenService.generateTokens(userDto)
 
         await tokenService.saveToken(userDto.id, tokens.refreshToken)
 
+        return {
+            ...tokens,
+            user: userDto
+        }
+
+    }
+    async login(email: string, password: string) {
+        const user = await User.findOne({ where: { email } })
+
+        if (!user) {
+            throw ApiError.BadRequest(`User with email ${email} not found`)
+        }
+        const passwordEqual = await bcrypt.compare(password, user.password)
+        if (!passwordEqual) {
+            throw ApiError.BadRequest(`Incorect password`)
+        }
+
+        const userDto = new UserDto(user)
+        const tokens = await tokenService.generateTokens(userDto)
+
+        await tokenService.saveToken(userDto.id, tokens.refreshToken)
         return {
             ...tokens,
             user: userDto
