@@ -1,9 +1,14 @@
 import jwt from 'jsonwebtoken'
 import { UserDto } from '../dtos/user.dto'
 import { ApiError } from '../exceptions/api.error'
+import { Token } from '../models/models'
 
+type Tokens = {
+    accessToken:string,
+    refreshToken:string
+}
 class TokenService {
-    async generateTokens(payload: UserDto) {
+    async generateTokens(payload: UserDto):Promise<Tokens> {
         const accessToken = jwt.sign(payload, process.env.JWT_ACCESS_SECRET_KEY || "secret", { expiresIn: "30m" })
         const refreshToken = jwt.sign(payload, process.env.JWT_REFRESH_SECRET_KEY || "secret", { expiresIn: "1d" })
 
@@ -30,6 +35,26 @@ class TokenService {
             console.log(error);
             throw ApiError.UnauthorizedError("Token invalid")
         }
+    }
+
+    async saveToken(userId: number, refreshToken: string) {
+
+        const tokenData = await Token.findOne({
+            where: {
+                user: userId
+            }
+        })
+
+        if (tokenData) {
+            tokenData.refreshToken = refreshToken
+            return await tokenData.save()
+        }
+
+        const token = await Token.create({
+            user: userId, refreshToken
+        })
+
+        return token
     }
 }
 
