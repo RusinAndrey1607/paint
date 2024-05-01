@@ -16,7 +16,8 @@ class AuthService {
         const user = await User.create({ email, password: hashPassword })
 
         const userDto = new UserDto(user)
-        const tokens = await tokenService.generateTokens(userDto)
+        
+        const tokens = await tokenService.generateTokens({ ...userDto })
 
         await tokenService.saveToken(userDto.id, tokens.refreshToken)
 
@@ -38,7 +39,7 @@ class AuthService {
         }
 
         const userDto = new UserDto(user)
-        const tokens = await tokenService.generateTokens(userDto)
+        const tokens = await tokenService.generateTokens({ ...userDto })
 
         await tokenService.saveToken(userDto.id, tokens.refreshToken)
         return {
@@ -47,6 +48,20 @@ class AuthService {
         }
 
     }
+    async logout(refreshToken: string) {
+        const token = await tokenService.removeToken(refreshToken)
+        return token
+    }
+    // async getAll() {
+    //     try {
+    //         const users = await User.findAll()
+    //         return users
+    //     } catch (error) {
+    //         return error
+
+    //     }
+    // }
+
 }
 
 export const authService = new AuthService()

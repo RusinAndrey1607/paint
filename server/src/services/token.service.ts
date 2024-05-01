@@ -38,7 +38,6 @@ class TokenService {
     }
 
     async saveToken(userId: number, refreshToken: string) {
-
         const tokenData = await Token.findOne({
             where: {
                 user: userId
@@ -54,6 +53,15 @@ class TokenService {
             user: userId, refreshToken
         })
 
+        return token
+    }
+    async removeToken(refreshToken: string) {
+        const token = await Token.destroy({
+            where: {
+                refreshToken
+            },
+
+        })
         return token
     }
 }
