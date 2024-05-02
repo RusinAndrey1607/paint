@@ -64,6 +64,14 @@ class TokenService {
         })
         return token
     }
+    async findToken(refreshToken: string) {
+        const token = await Token.findOne({
+            where: {
+                refreshToken
+            }
+        })
+        return token
+    }
 }
 
 export const tokenService = new TokenService()
