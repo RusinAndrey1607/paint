@@ -47,16 +47,20 @@ class AuthController {
         }
     }
     async refresh(req: Request, res: Response, next: Function) {
-    }
-    // async getAll(req: Request, res: Response, next: Function) {
-    //     try {
-    //         const users = await authService.getAll()
-    //         res.json(users)
-    //     } catch (error) {
-    //         next(error)
+        try {
+            const { refreshToken } = req.cookies
+            console.log(refreshToken);
 
-    //     }
-    // }
+
+            const userData = await authService.refresh(refreshToken)
+
+            res.cookie("refreshToken", userData.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true })
+            return res.json(userData)
+        } catch (error) {
+            next(error)
+
+        }
+    }
 }
 
 export const authController = new AuthController()

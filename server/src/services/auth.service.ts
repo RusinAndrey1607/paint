@@ -82,17 +82,6 @@ class AuthService {
 
 
     }
-
-    // async getAll() {
-    //     try {
-    //         const users = await User.findAll()
-    //         return users
-    //     } catch (error) {
-    //         return error
-
-    //     }
-    // }
-
 }
 
 export const authService = new AuthService()

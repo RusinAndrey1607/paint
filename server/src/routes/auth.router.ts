@@ -11,4 +11,4 @@ authRouter.post("/registration", [
     authController.registration)
 authRouter.post("/login", authController.login)
 authRouter.post("/logout", authController.logout)
-// authRouter.get("/", authController.getAll)
+authRouter.get("/refresh", authController.refresh)
