@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser"
 import cors from "cors"
 import { errorMiddleware } from "./middlewares/error.middleware";
 import expressWs from "express-ws";
+import { wsRouter } from "./routes/ws.router";
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.use(cors())
 app.use(cookieParser())
 
 app.use("/auth", authRouter)
+app.use("/ws",wsRouter)
 app.use(errorMiddleware)
 
 
