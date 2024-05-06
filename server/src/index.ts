@@ -1,4 +1,4 @@
-import express, { Express } from "express";
+import express from "express";
 import dotenv from "dotenv";
 import { connectToDatabase } from "./db/sequelize";
 import { authRouter } from "./routes/auth.router";
@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import { errorMiddleware } from "./middlewares/error.middleware";
 import {app} from "./app/expressSetup";
+import { websoketHandler } from "./utils/messageHandlers";
 
 dotenv.config();
 
@@ -17,9 +18,12 @@ app.use(cookieParser());
 
 app.use("/auth", authRouter);
 app.use(errorMiddleware);
-app.ws('/',(ws,req) =>{
 
-})
+//@ts-ignore
+app.ws('/',(ws:any) =>{
+  ws.on("message", (msg:string) => {
+    websoketHandler(ws, msg)
+  });})
 
 const start = async () => {
   try {
