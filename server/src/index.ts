@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request } from "express";
 import dotenv from "dotenv";
 import { connectToDatabase } from "./db/sequelize";
 import { authRouter } from "./routes/auth.router";
@@ -7,6 +7,8 @@ import cors from "cors";
 import { errorMiddleware } from "./middlewares/error.middleware";
 import {app} from "./app/expressSetup";
 import { websoketHandler } from "./utils/messageHandlers";
+import { fileService } from "./services/file.service";
+import { ApiError } from "./exceptions/api.error";
 
 dotenv.config();
 
@@ -25,6 +27,25 @@ app.ws('/',(ws:any) =>{
     websoketHandler(ws, msg)
   });})
 
+app.post("/image",(req:Request<{},{},{img:string},{id:string}>,res) =>{
+   try {
+    const data = req.body.img.replace('data:image/png;base64', '');
+    fileService.writeFile(req.query.id, data);
+    return res.status(200).json({ message: "File uploaded" });
+  } catch (error) {
+    throw ApiError.ServerError('Error ocured while writing file')
+  }
+  })
+  app.get("/image",async (req:Request<{},{},{img:string},{id:string}>,res) =>{
+    try {
+      const file = await fileService.getFile(req.query.id);
+      //@ts-ignore
+      const data = `data:image/png;base64,` + file.toString('base64');
+      res.json(data);
+    } catch (error) {
+      throw ApiError.BadRequest('Can not find file"')
+    }
+  })
 const start = async () => {
   try {
     await connectToDatabase();
