@@ -7,10 +7,10 @@ interface MainPageProps {
 }
 
 const MainPage: FC<MainPageProps> = () => (
-  <div>
+  <>
     <Toolbar />
     <Canvas />
-  </div>
+  </>
 );
 
 export default MainPage;
