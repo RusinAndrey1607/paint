@@ -32,7 +32,9 @@ const AuthForm: FC<AuthFormProps> = ({isLogin}) => {
     }
   }, [dispatch, email, password, isLogin]);
   return (
-    <div>AuthForm</div>
+    <form className='' onSubmit={onSubmitLoginForm}>
+      
+    </form>
   )
 }
 

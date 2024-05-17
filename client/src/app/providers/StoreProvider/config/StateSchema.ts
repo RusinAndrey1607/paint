@@ -1,4 +1,4 @@
-import { AuthSchema } from "entities/Auth/model/types/AuthSchema";
+import { AuthSchema } from "entities/Auth/";
 
 export interface StateSchema {
     auth:AuthSchema
