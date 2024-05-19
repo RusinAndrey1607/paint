@@ -1,9 +1,10 @@
-import { paintApi } from '@/shared/api'
-import React, { useEffect } from 'react'
+import React, { FC } from 'react'
 
-type Props = {}
+interface CanvasProps {
+  
+}
 
-const Canvas = (props: Props) => {
+const Canvas:FC<CanvasProps> = () => {
   return (
     <>Canvas</>
   )

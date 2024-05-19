@@ -1,11 +1,9 @@
-import React from 'react'
+import React, { FC } from "react";
 
-type Props = {}
+interface ToolbarProps {}
 
-function Toolbar({}: Props) {
-  return (
-    <div>Toolbar</div>
-  )
-}
+const Toolbar: FC<ToolbarProps> = () => {
+  return <>Toolbar</>;
+};
 
-export default Toolbar
+export default Toolbar;
