@@ -5,7 +5,7 @@ import { ApiError } from "../exceptions/api.error"
 
 class AuthController {
     async registration(req: Request, res: Response, next: Function) {
-        try {
+        try {            
             const errors = validationResult(req)
 
             if (!errors.isEmpty()) {
