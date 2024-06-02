@@ -43,13 +43,16 @@ const AuthForm: FC<AuthFormProps> = ({ isLogin }) => {
     [dispatch, email, password, isLogin]
   );
   return (
-    <div className="flex items-center justify-center min-h-scree">
-      <div className="w-full max-w-xs">
+    <div className="flex items-center justify-center min-h-screen ">
+      <div className="w-full max-w-96 border rounded-md p-">
         <form
           onSubmit={onSubmitLoginForm}
           className="shadow-md rounded px-8 pt-6 pb-8 mb-4"
         >
-          <h2 className="mb-4 text-2xl text-center">Login</h2>
+          <h2 className="mb-4 text-2xl text-center">
+            {isLogin ? "Login" : "Register"}
+          </h2>
+
           <div className="mb-4">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
@@ -81,7 +84,7 @@ const AuthForm: FC<AuthFormProps> = ({ isLogin }) => {
           </div>
           <div className="flex items-center justify-between">
             <button className="btn btn-primary w-full" type="submit">
-              Login
+              {isLogin ? "SignIn" : "SignUp"}
             </button>
           </div>
         </form>

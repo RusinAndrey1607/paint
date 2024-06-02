@@ -12,6 +12,14 @@ export function createReduxStore(initialState?: StateSchema) {
   return configureStore<StateSchema>({
     reducer: rootReducers,
     preloadedState: initialState,
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
+        serializableCheck: {
+          ignoredActions: ['canvas/setCanvas'],
+          ignoredPaths: ['canvas.canvas'],
+
+        },
+      }),
   });
 }
 
