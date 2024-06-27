@@ -1,3 +1,2 @@
-import Canvas from "./ui/Canvas";
+export {Canvas} from "./ui/Canvas";
 
-export default Canvas;

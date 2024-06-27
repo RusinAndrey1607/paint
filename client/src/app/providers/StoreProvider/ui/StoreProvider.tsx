@@ -8,11 +8,10 @@ interface StoreProviderProps {
   // initialState?: StateSchema;
 }
 
-const StoreProvider: FC<StoreProviderProps> = ({
+export const StoreProvider: FC<StoreProviderProps> = ({
   children,
   // initialState
 }) => {
   return <Provider store={AppStore}>{children}</Provider>;
 };
 
-export default StoreProvider;

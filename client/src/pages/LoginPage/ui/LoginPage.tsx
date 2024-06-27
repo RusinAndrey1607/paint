@@ -6,7 +6,7 @@ import { FC } from "react";
 
 interface LoginPageProps {}
 
-const LoginPage: FC<LoginPageProps> = () => {
+export const LoginPage: FC<LoginPageProps> = () => {
   const router = useRouter();
 
   const { isAuth } = useAppSelector(getAuthState);
@@ -20,4 +20,3 @@ const LoginPage: FC<LoginPageProps> = () => {
   );
 };
 
-export default LoginPage;

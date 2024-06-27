@@ -1,3 +1,1 @@
-import Input from './ui/Input';
-
-export default Input;
+export { Input } from "./ui/Input";

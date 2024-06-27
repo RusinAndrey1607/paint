@@ -1,3 +1,1 @@
-import Toolbar from "./ui/Toolbar";
-
-export default Toolbar;
+export { Toolbar } from "./ui/Toolbar";

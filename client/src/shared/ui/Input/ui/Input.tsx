@@ -13,7 +13,7 @@ interface InputProps extends HTMLInputProps {
   onChange?: (value: string) => void;
 }
 
-const Input: FC<InputProps> = ({
+export const Input: FC<InputProps> = ({
   onChange,
   className="",
   value = "",
@@ -37,4 +37,3 @@ const Input: FC<InputProps> = ({
   );
 };
 
-export default Input;

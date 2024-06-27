@@ -7,7 +7,7 @@ interface CanvasProps {
   
 }
 
-const Canvas:FC<CanvasProps> = () => {
+export const Canvas:FC<CanvasProps> = () => {
   const {isAuth} = useAppSelector(getAuthState)
   return (
     <>
@@ -16,4 +16,3 @@ const Canvas:FC<CanvasProps> = () => {
   )
 }
 
-export default Canvas

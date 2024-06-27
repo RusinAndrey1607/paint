@@ -1,10 +1,10 @@
-import Canvas from "widgets/Canvas";
-import Toolbar from "widgets/Toolbar";
+import {Canvas} from "widgets/Canvas";
+import {Toolbar} from "widgets/Toolbar";
 import { FC } from "react";
 
 interface MainPageProps {}
 
-const MainPage: FC<MainPageProps> = () => {
+export const MainPage: FC<MainPageProps> = () => {
   return (
     <>
       <Toolbar />
@@ -12,4 +12,3 @@ const MainPage: FC<MainPageProps> = () => {
     </>
   );
 };
-export default MainPage;

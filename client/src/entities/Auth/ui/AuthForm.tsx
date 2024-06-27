@@ -7,13 +7,15 @@ import {
   useAppDispatch,
   useAppSelector,
 } from "app/providers/StoreProvider/config/store";
-import Input from "shared/ui/Input";
+
+import {InputField} from "shared/ui/InputField";
+import {Button} from "shared/ui/Button";
 
 interface AuthFormProps {
   isLogin: boolean;
 }
 
-const AuthForm: FC<AuthFormProps> = ({ isLogin }) => {
+export const AuthForm: FC<AuthFormProps> = ({ isLogin }) => {
   const dispatch = useAppDispatch();
   const { email, password } = useAppSelector(getAuthState);
 
@@ -43,7 +45,7 @@ const AuthForm: FC<AuthFormProps> = ({ isLogin }) => {
     [dispatch, email, password, isLogin]
   );
   return (
-    <div className="flex items-center justify-center min-h-screen ">
+    <div className="flex items-center justify-center min-h-screen">
       <div className="w-full max-w-96 border rounded-md p-">
         <form
           onSubmit={onSubmitLoginForm}
@@ -53,39 +55,26 @@ const AuthForm: FC<AuthFormProps> = ({ isLogin }) => {
             {isLogin ? "Login" : "Register"}
           </h2>
 
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="email"
-            >
-              Email
-            </label>
-            <Input
-              placeholder="Email"
-              id="email"
-              value={email}
-              onChange={onChangeEmail}
-            />
-          </div>
-          <div className="mb-6">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="password"
-            >
-              Password
-            </label>
-            <Input
-              placeholder="Password"
-              id="password"
-              type="password"
-              value={password}
-              onChange={onChangePassword}
-            />
-          </div>
+          <InputField
+            label="Email"
+            id="email"
+            value={email}
+            onChange={onChangeEmail}
+            placeholder="Email"
+          />
+          <InputField
+            label="Password"
+            id="password"
+            type="password"
+            value={password}
+            onChange={onChangePassword}
+            placeholder="Password"
+            className="mb-6"
+          />
           <div className="flex items-center justify-between">
-            <button className="btn btn-primary w-full" type="submit">
+            <Button type="submit" className="btn-primary w-full">
               {isLogin ? "SignIn" : "SignUp"}
-            </button>
+            </Button>
           </div>
         </form>
       </div>
@@ -93,4 +82,3 @@ const AuthForm: FC<AuthFormProps> = ({ isLogin }) => {
   );
 };
 
-export default AuthForm;
