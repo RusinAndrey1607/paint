@@ -1,18 +1,15 @@
-import React from "react";
+import React from 'react';
 
-type Props = {
+type LabelProps = {
   htmlFor: string;
   text: string;
 };
 
-export const Label = ({ text, htmlFor }: Props) => {
-  return (
+export const Label = ({ text, htmlFor }: LabelProps) => (
     <label
-      className="block text-gray-700 text-sm font-bold mb-2"
-      htmlFor={htmlFor}
+        className="block text-gray-700 text-sm font-bold mb-2"
+        htmlFor={htmlFor}
     >
-      {text}
+        {text}
     </label>
-  );
-};
-
+);

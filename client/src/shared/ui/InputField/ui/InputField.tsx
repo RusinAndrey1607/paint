@@ -1,8 +1,8 @@
-import React from "react";
-import {Input} from "shared/ui/Input";
-import {Label} from "shared/ui/Label";
+import React from 'react';
+import { Input } from 'shared/ui/Input';
+import { Label } from 'shared/ui/Label';
 
-type Props = {
+type InputFieldProps = {
   label: string;
   id: string;
   type?: string;
@@ -13,25 +13,22 @@ type Props = {
 };
 
 export const InputField = ({
-  label,
-  id,
-  type = "text",
-  value,
-  onChange,
-  placeholder,
-  className,
-}: Props) => {
-  return (
+    label,
+    id,
+    type = 'text',
+    value,
+    onChange,
+    placeholder,
+    className,
+}: InputFieldProps) => (
     <div className={`mb-4 ${className}`}>
-      <Label text={label} htmlFor={id} />
-      <Input
-        placeholder={placeholder}
-        id={id}
-        type={type}
-        value={value}
-        onChange={onChange}
-      />
+        <Label text={label} htmlFor={id} />
+        <Input
+            placeholder={placeholder}
+            id={id}
+            type={type}
+            value={value}
+            onChange={onChange}
+        />
     </div>
-  );
-};
-
+);

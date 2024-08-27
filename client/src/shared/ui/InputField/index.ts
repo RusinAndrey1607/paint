@@ -1,1 +1,1 @@
-export {InputField} from './ui/InputField'
+export { InputField } from './ui/InputField';

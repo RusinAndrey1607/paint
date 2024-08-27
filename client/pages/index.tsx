@@ -1,4 +1,3 @@
-import {MainPage} from "pages/MainPage";
+import { MainPage } from 'pages/MainPage';
 
-
-export default MainPage
+export default MainPage;

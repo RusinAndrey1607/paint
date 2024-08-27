@@ -1,8 +1,5 @@
-import React, { FC } from "react";
+import React, { FC } from 'react';
 
 interface ToolbarProps {}
 
-export const Toolbar: FC<ToolbarProps> = () => {
-  return <>Toolbar</>;
-};
-
+export const Toolbar: FC<ToolbarProps> = () => <>Toolbar</>;

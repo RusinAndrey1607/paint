@@ -1,26 +1,25 @@
-import { ReducersMapObject, configureStore } from "@reduxjs/toolkit";
-import { StateSchema } from "./StateSchema";
-import { authReducer } from "entities/Auth";
-import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import { canvasReducer } from "entities/Canvas";
+import { ReducersMapObject, configureStore } from '@reduxjs/toolkit';
+import { authReducer } from 'entities/Auth';
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import { canvasReducer } from 'entities/Canvas';
+import { StateSchema } from './StateSchema';
 
 export function createReduxStore(initialState?: StateSchema) {
-  const rootReducers: ReducersMapObject<StateSchema> = {
-    auth:authReducer,
-    canvas:canvasReducer
-  };
-  return configureStore<StateSchema>({
-    reducer: rootReducers,
-    preloadedState: initialState,
-    middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware({
-        serializableCheck: {
-          ignoredActions: ['canvas/setCanvas'],
-          ignoredPaths: ['canvas.canvas'],
+    const rootReducers: ReducersMapObject<StateSchema> = {
+        auth: authReducer,
+        canvas: canvasReducer,
+    };
+    return configureStore<StateSchema>({
+        reducer: rootReducers,
+        preloadedState: initialState,
+        middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+            serializableCheck: {
+                ignoredActions: ['canvas/setCanvas'],
+                ignoredPaths: ['canvas.canvas'],
 
-        },
-      }),
-  });
+            },
+        }),
+    });
 }
 
 export const AppStore = createReduxStore();
