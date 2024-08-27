@@ -4,9 +4,10 @@ import { FC } from 'react';
 
 interface MainPageProps {}
 
-export const MainPage: FC<MainPageProps> = () => (
+const MainPage: FC<MainPageProps> = () => (
     <>
         <Toolbar />
         <Canvas />
     </>
 );
+export default MainPage;

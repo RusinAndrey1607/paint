@@ -1,7 +1,7 @@
 import { ReducersMapObject, configureStore } from '@reduxjs/toolkit';
-import { authReducer } from 'entities/Auth';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { canvasReducer } from 'entities/Canvas';
+import { authReducer } from 'features/Auth';
 import { StateSchema } from './StateSchema';
 
 export function createReduxStore(initialState?: StateSchema) {

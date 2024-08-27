@@ -1,12 +1,11 @@
 import { useAppSelector } from 'app/providers/StoreProvider/config/store';
-import { AuthForm } from 'entities/Auth';
-import { getAuthState } from 'entities/Auth/model/selectors/getAuthState/getAuthState';
+import { AuthForm, getAuthState } from 'features/Auth';
 import { useRouter } from 'next/router';
 import { FC } from 'react';
 
 interface LoginPageProps {}
 
-export const LoginPage: FC<LoginPageProps> = () => {
+const LoginPage: FC<LoginPageProps> = () => {
     const router = useRouter();
 
     const { isAuth } = useAppSelector(getAuthState);
@@ -17,3 +16,5 @@ export const LoginPage: FC<LoginPageProps> = () => {
         <AuthForm isLogin={false} />
     );
 };
+
+export default LoginPage

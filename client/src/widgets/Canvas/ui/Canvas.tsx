@@ -1,7 +1,7 @@
 import { useAppSelector } from 'app/providers/StoreProvider/config/store';
-import { getAuthState } from 'entities/Auth/model/selectors/getAuthState/getAuthState';
+import { getAuthState } from 'features/Auth';
 import { LocalCanvas, RemoteCanvas } from 'entities/Canvas';
-import React, { FC, Fragment } from 'react';
+import React, { FC } from 'react';
 
 interface CanvasProps {
 

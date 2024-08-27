@@ -10,6 +10,7 @@ module.exports = {
         'airbnb',
         // 'plugin:i18next/recommended',
         'plugin:storybook/recommended',
+        'plugin:@next/next/recommended',
     ],
 
     parser: '@typescript-eslint/parser',
@@ -25,7 +26,8 @@ module.exports = {
     },
 
     // plugins: ['react', '@typescript-eslint', 'i18next', 'react-hooks'],
-    plugins: ['react', '@typescript-eslint', 'react-hooks'],
+    plugins: ['react', '@typescript-eslint', 'react-hooks',
+    ],
 
     rules: {
         'react/jsx-indent': [2, 4],
