@@ -17,6 +17,8 @@ jobs:
           uses: actions/setup-node@v1
           with:
             node-version: ${{ matrix.node-version }}
+        - name: Move to client directory
+          run: cd client
         - name: Install dependencies
           run: npm install
         - name: Build production project
