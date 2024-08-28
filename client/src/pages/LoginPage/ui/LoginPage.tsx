@@ -17,4 +17,4 @@ const LoginPage: FC<LoginPageProps> = () => {
     );
 };
 
-export default LoginPage
+export default LoginPage;
